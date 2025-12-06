@@ -1,6 +1,10 @@
 import { readFileSync } from 'fs';
 
-export function readFile(filePath) {
+export function readFile(filePath, notrim = false) {
     const content = readFileSync(filePath, 'utf-8');
-    return content.trim().split('\n').map((line) => line.trim());
+    const lines = content.trim().split('\n');
+    if (notrim) {
+        return lines;
+    }
+    return lines.map((line) => line.trim());
 }
